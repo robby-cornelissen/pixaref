@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "esModuleInterop": true,
+        "target": "es2020",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "sourceMap": true,
+        "rootDir": "src",
+        "outDir": "dist",
+        "declaration": true,
+        "declarationMap": true,
+        "strict": true,
+        "lib": [
+            "es2020"
+        ]
+    },
+    "references": [
+        {
+            "path": "../core"
+        }
+    ],
+    "include": [
+        "src/**/*"
+    ]
+}

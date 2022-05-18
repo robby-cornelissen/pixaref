@@ -1,0 +1,85 @@
+@use "@angular/material" as mat;
+
+$my-primary: mat.define-palette(mat.$lime-palette, A700, A400, A700);
+$my-accent: mat.define-palette(mat.$light-green-palette, 800, 700, 900);
+$my-warn: mat.define-palette(mat.$deep-orange-palette, 700, 500, 900);
+
+$my-light-text: #ffffff;
+$my-light-primary-text: $my-light-text;
+$my-light-accent-text: rgba($my-light-primary-text, 0.7);
+$my-light-disabled-text: rgba($my-light-primary-text, 0.5);
+$my-light-dividers: rgba($my-light-primary-text, 0.12);
+$my-light-focused: rgba($my-light-primary-text, 0.12);
+
+$my-dark-foreground: (
+  base: $my-light-text,
+  divider: $my-light-dividers,
+  dividers: $my-light-dividers,
+  disabled: $my-light-disabled-text,
+  disabled-button: rgba($my-light-text, 0.3),
+  disabled-text: $my-light-disabled-text,
+  elevation: black,
+  hint-text: $my-light-disabled-text,
+  secondary-text: $my-light-accent-text,
+  accent-text: $my-light-accent-text,
+  icon: $my-light-text,
+  icons: $my-light-text,
+  text: $my-light-text,
+  slider-min: $my-light-text,
+  slider-off: rgba($my-light-text, 0.3),
+  slider-off-active: rgba($my-light-text, 0.3),
+);
+
+$my-dark-bg: #090909;
+$my-dark-bg-lighter-5: lighten($my-dark-bg, 5%);
+$my-dark-bg-lighter-10: lighten($my-dark-bg, 10%);
+$my-dark-bg-lighter-20: lighten($my-dark-bg, 20%);
+$my-dark-bg-lighter-30: lighten($my-dark-bg, 30%);
+$my-light-bg-alpha-4: rgba(#fafafa, 0.04);
+$my-light-bg-alpha-12: rgba(#fafafa, 0.12);
+
+$my-dark-background: (
+  background: $my-dark-bg,
+  status-bar: $my-dark-bg-lighter-20,
+  app-bar: $my-dark-bg-lighter-5,
+  hover: $my-light-bg-alpha-4,
+  card: $my-dark-bg-lighter-5,
+  dialog: $my-dark-bg-lighter-5,
+  tooltip: $my-dark-bg-lighter-20,
+  disabled-button: $my-light-bg-alpha-12,
+  raised-button: $my-dark-bg-lighter-5,
+  focused-button: $my-light-focused,
+  selected-button: $my-dark-bg-lighter-20,
+  selected-disabled-button: $my-dark-bg-lighter-30,
+  disabled-button-toggle: $my-dark-bg-lighter-10,
+  unselected-chip: $my-dark-bg-lighter-20,
+  disabled-list-option: $my-dark-bg-lighter-10,
+);
+
+$my-typography: (
+  display-4: mat.define-typography-level(96px, 96px, 300, "Montserrat", -0.0134em),
+  display-3: mat.define-typography-level(50px, 50px, 400, "Montserrat", -0.0089em),
+  display-2: mat.define-typography-level(40px, 42px, 400, "Montserrat", 0em),
+  display-1: mat.define-typography-level(28px, 32px, 400, "Montserrat", 0.0074em),
+  headline: mat.define-typography-level(24px, 28px, 400, "Montserrat", 0.025em),
+  title: mat.define-typography-level(18px, 28px, 500, "Roboto", 0.0075em),
+  subheading-2: mat.define-typography-level(14px, 24px, 400, "Roboto", 0.0094em),
+  subheading-1: mat.define-typography-level(13px, 20px, 500, "Roboto", 0.0067em),
+  body-2: mat.define-typography-level(12px, 20px, 500, "Roboto", 0.0179em),
+  body-1: mat.define-typography-level(12px, 16px, 400, "Roboto", 0.0179em),
+  button: mat.define-typography-level(12px, 12px, 500, "Roboto", 0.0893em),
+  caption: mat.define-typography-level(12px, 16px, 400, "Roboto", 0.0333em),
+  input: mat.define-typography-level(inherit, 1.125, 400, "Roboto", 0em),
+);
+
+$theme: (
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn,
+    foreground: $my-dark-foreground,
+    background: $my-dark-background,
+  ),
+  typography: $my-typography,
+  is-dark: true,
+);

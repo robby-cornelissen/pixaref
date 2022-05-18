@@ -1,0 +1,87 @@
+<input type="file" [accept]="mimes.join()" (change)="selectFile($any($event.target).files)" #fileUpload>
+<mat-dialog-content fxLayout="column" fxLayoutGap="2rem">
+    <div pixarefDragAndDrop (fileDropped)="selectFile($event)" class="image-upload" [class.selected]="preview">
+        <div fxLayout="row" fxLayoutAlign="center center" class="image-preview"
+            [style.backgroundColor]="previewBackgroundColor">
+            <img *ngIf="preview" [src]="preview">
+            <div *ngIf="!preview" fxLayout="column" fxLayoutAlign="center center" class="image-upload-box">
+                <div class="image-upload-icon">
+                    <mat-icon inline="true">cloud_upload</mat-icon>
+                </div>
+                <h2>Drop image here</h2>
+            </div>
+        </div>
+        <div class="image-button-container" fxLayout="column" fxLayoutGap=".125rem">
+            <button *ngIf="preview" mat-icon-button (click)="view()" class="image-view-button">
+                <mat-icon>zoom_out_map</mat-icon>
+            </button>
+            <button *ngIf="image" mat-icon-button (click)="open()" class="image-view-button">
+                <mat-icon>open_in_new</mat-icon>
+            </button>
+            <button mat-icon-button (click)="fileUpload.click()" class="image-upload-button">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="image-attributes">
+        <div fxLayout="row" fxLayoutGap="1rem">
+            <mat-form-field fxFlex="3 3 auto" appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput [(ngModel)]="ref.title" autocomplete="off">
+            </mat-form-field>
+            <mat-form-field fxFlex="1 1 7.5rem" appearance="outline">
+                <mat-label>Type</mat-label>
+                <mat-select [(ngModel)]="ref.type">
+                    <mat-select-trigger>
+                        <mat-icon *ngIf="ref.type" matPrefix>{{icons[ref.type]}}</mat-icon>
+                        {{ref.type}}
+                    </mat-select-trigger>
+                    <mat-option [value]="undefined">(None)</mat-option>
+                    <mat-option *ngFor="let type of types" [value]="type.name">
+                        <mat-icon matPrefix>{{icons[type.name]}}</mat-icon>
+                        {{type.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="1 1 7.5rem" appearance="outline">
+                <mat-label>Year</mat-label>
+                <input matInput type="number" min="0" [max]="currentYear" [(ngModel)]="ref.year" autocomplete="off">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field fxFlexFill appearance="outline">
+                <mat-label>Tags</mat-label>
+                <mat-chip-list #chipList [selectable]="false" aria-label="Tags">
+                    <mat-chip *ngFor="let tag of ref.tags" (removed)="removeTag(tag)">
+                        {{ tag }}
+                        <button matChipRemove>
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </mat-chip>
+                    <input #tagInput #trigger="matAutocompleteTrigger" [matAutocomplete]="auto"
+                        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separators"
+                        (matChipInputTokenEnd)="inputTag($event); trigger.closePanel();" (blur)="blurTag($event)"
+                        (input)="filterTags($any($event.target).value)" placeholder="Add tag...">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectTag($event)">
+                    <mat-option *ngFor="let tag of filteredTags" [value]="tag">
+                        {{tag}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="space-between">
+    <div>
+        <button *ngIf="!new" mat-icon-button color="warn" (click)="delete()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+    <div>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button color="primary" (click)="save()" [disabled]="!this.image">
+            Save
+        </button>
+    </div>
+</mat-dialog-actions>

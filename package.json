@@ -1,0 +1,15 @@
+{
+  "name": "pixaref",
+  "version": "0.0.2",
+  "author": "Robby Cornelissen",
+  "private": true,
+  "workspaces": [
+    "core",
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "build": "yarn --cwd core build && yarn --cwd server build && yarn --cwd web build",
+    "serve": "yarn --cwd server serve"
+  }
+}

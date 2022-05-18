@@ -1,0 +1,84 @@
+@use "@angular/material" as mat;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+
+@import "variables.scss";
+
+@include mat.core($theme);
+@include mat.core-theme($theme);
+@include mat.autocomplete-theme($theme);
+@include mat.button-theme($theme);
+@include mat.card-theme($theme);
+@include mat.checkbox-theme($theme);
+@include mat.chips-theme($theme);
+@include mat.dialog-theme($theme);
+@include mat.expansion-theme($theme);
+@include mat.form-field-theme($theme);
+@include mat.icon-theme($theme);
+@include mat.input-theme($theme);
+@include mat.paginator-theme($theme);
+@include mat.progress-spinner-theme($theme);
+@include mat.select-theme($theme);
+@include mat.sidenav-theme($theme);
+@include mat.slider-theme($theme);
+@include mat.snack-bar-theme($theme);
+@include mat.toolbar-theme($theme);
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color-scheme: dark;
+}
+
+/* TODO find a way to apply styles to Material generated HTML */
+pixaref .material-icons {
+  font-size: 24px;
+  font-family: "Material Icons Outlined", "Material Icons";
+  .mat-badge-content {
+    font-family: "Roboto";
+  }
+}
+
+pixaref .mat-paginator-container {
+  padding: 0;
+}
+
+pixaref .mat-paginator-page-size-label {
+  margin-left: 0;
+}
+
+
+pixaref .mat-drawer-backdrop.mat-drawer-shown {
+    opacity: 0.6;
+    background-color: black;
+}
+
+pixaref-gallery .gallery-item .mat-card-header-text {
+  flex: 1; // force the card header to take up the full width of the card
+  min-width: 0;
+  margin: 0;
+}
+
+pixaref-filter .mat-form-field-wrapper,
+pixaref-settings .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+pixaref-filter .mat-form-field-underline {
+  bottom: 0;
+}
+
+pixaref-scrollable .mat-chip-list-wrapper {
+  flex-wrap: nowrap; // force the chips to be on one line for scrolling
+  height: 40px; // in case no chips are present, force to chip height
+  margin: -4px 0; // would be nicer to fix the scrollbar to deal with negative margins
+  // look at ngx-scrollable for a proper styling implementation
+}

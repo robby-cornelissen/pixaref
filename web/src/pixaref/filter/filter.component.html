@@ -1,0 +1,47 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="mat-body">
+    <div fxLayout="row" fxLayoutGap="1rem">
+        <mat-form-field fxFlex="5 0 12.5rem" floatLabel="auto" appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput [ngModel]="refFilter.title" (ngModelChange)="changeTitle($event)" placeholder="Title"
+                autocomplete="off">
+        </mat-form-field>
+        <mat-form-field fxFlex="2 0 7.5rem" floatLabel="auto" appearance="outline">
+            <mat-label>Type</mat-label>
+            <mat-select [ngModel]="refFilter.type" (ngModelChange)="changeType($event)" placeholder="Type">
+                <mat-select-trigger>
+                    <mat-icon *ngIf="refFilter.type" matPrefix>{{icons[refFilter.type]}}</mat-icon>
+                    {{refFilter.type}}
+                </mat-select-trigger>
+                <mat-option [value]="undefined">(All)</mat-option>
+                <mat-option *ngFor="let type of types" [value]="type.name">
+                    <mat-icon matPrefix>{{icons[type.name]}}</mat-icon>
+                    {{type.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="10 0 25rem" floatLabel="auto" appearance="outline">
+            <mat-label>Tags</mat-label>
+            <mat-chip-list #chipList aria-label="Tags">
+                <mat-basic-chip *ngFor="let tag of refFilter.tags" (removed)="removeTag(tag)">
+                    {{ tag }}
+                    <button matChipRemove>
+                        <mat-icon color="warn">clear</mat-icon>
+                    </button>
+                </mat-basic-chip>
+                <input #tagInput #trigger="matAutocompleteTrigger" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separators"
+                    (matChipInputTokenEnd)="inputTag($event); trigger.closePanel();" matChipInputAddOnBlur="false"
+                    (input)="filterTags($any($event.target).value)" placeholder="Add tag...">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectTag($event)">
+                <mat-option *ngFor="let tag of filteredTags" [value]="tag">
+                    {{tag}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <button mat-icon-button (click)="clear()" [disabled]="isClear()">
+        <mat-icon *ngIf="isClear()">filter_alt</mat-icon>
+        <mat-icon *ngIf="!isClear()">filter_alt_off</mat-icon>
+    </button>
+</div>

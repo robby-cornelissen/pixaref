@@ -1,0 +1,91 @@
+@use "@angular/material" as mat;
+
+@import "../variables.scss";
+
+$background-color: map-get(map-get(map-get($theme, color), background), background);
+$app-bar-background-color: map-get(map-get(map-get($theme, color), background), app-bar);
+$status-bar-background-color: map-get(map-get(map-get($theme, color), background), status-bar);
+
+
+.main {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.toolbar {
+    flex: 0 1 auto;
+    padding: 8px 8px;
+}
+
+.toolbar-logo {
+    width: 48px;
+    height: 48px;
+}
+
+.toolbar-title {
+    @include mat.typography-level($my-typography, "headline");
+    display: inline-block;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.shadow {
+    position: relative;
+}
+
+.shadow > div {
+    position: absolute;
+    left: 0;
+    right: 16px;
+    height: 8px;
+    background: linear-gradient(180deg, $background-color 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.drawer {
+    border-top: 1px solid $status-bar-background-color;
+}
+
+.content {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.actionbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 16px; // accommodate scrollbar
+    padding: 16px;
+    z-index: 10;
+    background: linear-gradient(0deg, $background-color 0%, rgba(0, 0, 0, 0) 100%);
+    pointer-events: none;
+}
+
+.actions {
+    position: relative;
+    border-radius: 28px;
+    padding: 0 8px 0 28px;
+    z-index: 10;
+    background-color: $app-bar-background-color;
+    @include mat.elevation(8);
+    pointer-events: all;
+}
+
+.actions .mat-paginator {
+    background-color: $app-bar-background-color;
+}
+
+.add-button,
+.connect-button {
+    margin-left: 16px;
+}
+
+.status-progress-spinner {
+    position: absolute;
+    right: 0;
+    pointer-events: none;
+}

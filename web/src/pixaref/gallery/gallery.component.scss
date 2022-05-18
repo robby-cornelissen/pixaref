@@ -1,0 +1,80 @@
+@use "@angular/material" as mat;
+
+@import "../../variables.scss";
+
+$disabled-text-foreground-color: map-get(map-get(map-get($theme, color), foreground), disabled-text);
+$default-primary-color: map-get(map-get(map-get($theme, color), primary), default);
+$default-accent-color: map-get(map-get(map-get($theme, color), accent), default);
+$icon-size: 20px;
+
+// hack because fxLayoutGap doesn't play nice with flex row wrap
+// https://github.com/angular/flex-layout/issues/1264
+.gallery-container {
+    overflow: hidden;
+}
+
+.gallery-item .mat-card {
+    @include mat.elevation(2, $default-accent-color, .3);
+
+    &:hover {
+        @include mat.elevation(8, $default-accent-color, .9);
+    }
+}
+
+.gallery-item-header > *:last-child {
+    flex: 1;
+}
+
+.gallery-item-header .muted {
+    color: $disabled-text-foreground-color;
+}
+
+.gallery-item-title-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: $icon-size;
+    cursor: pointer;
+
+    &.highlight, &:hover {
+        color: $default-primary-color;
+    }
+}
+
+.gallery-item-mime {
+    padding: 0 4px;
+    border-radius: 4px;
+    border: 1px solid $disabled-text-foreground-color;
+}
+
+.gallery-item-icon {
+    width: $icon-size;
+    height: $icon-size;
+    cursor: pointer;
+
+    &.highlight, &:hover {
+        color: $default-primary-color;
+    }
+}
+
+.gallery-item-icon mat-icon {
+    width: $icon-size;
+    height: $icon-size;
+    font-size: $icon-size;
+}
+
+.gallery-item .mat-card-image {
+    margin-bottom: 0;
+    aspect-ratio: 16 / 9;
+    object-fit: scale-down;
+    cursor: pointer;
+}
+
+.gallery-item .mat-chip-list {
+    box-sizing: border-box;
+}
+
+.gallery-item .mat-chip {
+    white-space: nowrap;
+    cursor: pointer;
+}

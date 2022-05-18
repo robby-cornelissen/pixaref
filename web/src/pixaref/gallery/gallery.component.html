@@ -1,0 +1,40 @@
+<div class="gallery-container">
+    <div class="gallery" fxLayout="row wrap" fxLayoutGap="1rem grid">
+        <div class="gallery-item" *ngFor="let ref of refs" [fxFlex]="(100 / refsPerRow) + '%'">
+            <mat-card>
+                <mat-card-header class="gallery-item-header">
+                    <mat-card-title class="gallery-item-title" fxLayout="row" fxLayoutAlign="space-between center"
+                        fxLayoutGap="1rem">
+                        <div *ngIf="ref.title" (click)="toggleTitle(ref.title)" class="gallery-item-title-text"
+                            [class.highlight]="titlePredicate(ref.title)">
+                            {{ref.title}}
+                        </div>
+                        <div *ngIf="!ref.title" class="gallery-item-title-text muted">Untitled</div>
+                        <div *ngIf="ref.type" (click)="toggleType(ref.type)" class="gallery-item-icon" [class.highlight]="typePredicate(ref.type)">
+                            <mat-icon>{{icons[ref.type]}}</mat-icon>
+                        </div>
+                    </mat-card-title>
+                    <mat-card-subtitle fxLayout="row" fxLayoutAlign="space-between" class="gallery-item-subtitle">
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="0.25rem">
+                            <div class="gallery-item-mime">{{mimes[ref.image.mime]?.label}}</div>
+                            <div>{{ref.image.width}}☓{{ref.image.height}}</div>
+                        </div>
+                        <div>{{ref.year || '&nbsp;'}}</div>
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image (click)="select(ref)" [src]="getThumbnailUrl(ref)"
+                    [style.backgroundColor]="getThumbnailBackgroundColor(ref)">
+                <mat-card-actions>
+                    <pixaref-scrollable>
+                        <mat-chip-list multiple="true">
+                            <mat-chip *ngFor="let tag of ref.tags" [selected]="tagPredicate(tag)"
+                                (click)="toggleTag(tag)">
+                                {{tag}}
+                            </mat-chip>
+                        </mat-chip-list>
+                    </pixaref-scrollable>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

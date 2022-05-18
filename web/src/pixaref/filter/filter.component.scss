@@ -1,0 +1,48 @@
+@use "sass:math";
+
+$font-size: 12px;
+
+mat-form-field.mat-form-field {
+  font-size: $font-size;
+}
+
+mat-basic-chip {
+    font-size: $font-size;
+    display: inline-flex;
+    margin-left: 4px;
+    margin-right: 4px;
+    gap: 4px;
+}
+
+mat-basic-chip .mat-chip-remove {
+    width: $font-size;
+    height: $font-size;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+mat-basic-chip .mat-chip-remove .mat-icon {
+    width: $font-size;
+    height: $font-size;
+    font-size: $font-size;
+}
+
+input.mat-chip-input {
+    width: 50px;
+    flex: 1 0 50px;
+}
+
+$select-icon-size: 20px;
+
+mat-option mat-icon, mat-select-trigger mat-icon {
+    height: $select-icon-size;
+    width: $select-icon-size;
+    font-size: $select-icon-size;
+    margin-right: math.div($select-icon-size, 2);
+    margin-top: math.div($font-size - $select-icon-size, 2);
+    margin-bottom: math.div($font-size - $select-icon-size, 2);
+    vertical-align: middle;
+}

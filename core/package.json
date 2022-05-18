@@ -1,0 +1,14 @@
+{
+  "name": "@pixaref/core",
+  "version": "0.0.2",
+  "main": "dist/index.js",
+  "type": "module",
+  "author": "Robby Cornelissen",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
+}

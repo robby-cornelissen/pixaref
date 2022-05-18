@@ -1,0 +1,54 @@
+<div class="main">
+    <mat-toolbar class="toolbar">
+        <img class="toolbar-logo" src="assets/images/pixaref.svg">
+        <span class="toolbar-title">{{title}}</span>
+        <span fxFlex="1 1 auto" fxLayoutAlign="center center" class="toolbar-spacer">
+            <pixaref-filter fxHide fxShow.gt-md></pixaref-filter>
+        </span>
+        <div *ngIf="zoomFactor && minZoomFactor > maxZoomFactor" fxLayout="row" fxLayoutAlign="center center"
+            class="toolbar-zoom">
+            <button mat-icon-button (click)="zoomOut()" [disabled]="zoomFactor >= minZoomFactor">
+                <mat-icon>zoom_out</mat-icon>
+            </button>
+            <mat-slider invert [min]="maxZoomFactor" [max]="minZoomFactor" [(ngModel)]="zoomFactor" step="1"
+                tickInterval="1"></mat-slider>
+            <button mat-icon-button (click)="zoomIn()" [disabled]="zoomFactor <= maxZoomFactor">
+                <mat-icon>zoom_in</mat-icon>
+            </button>
+        </div>
+        <button mat-icon-button (click)="drawer.toggle()" aria-label="Settings">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </mat-toolbar>
+    <div class="shadow"><div></div></div>
+    <mat-drawer-container>
+        <mat-drawer #drawer class="drawer" mode="over" position="end" autoFocus="false">
+            <pixaref-settings></pixaref-settings>
+        </mat-drawer>
+        <mat-drawer-content>
+            <div pixarefResizeObserver (resized)="scale($event)" class="content">
+                <pixaref-gallery [refs]="pageRefs" [refsPerRow]="zoomFactor || stdZoomFactor"
+                    (refSelected)="edit($event)">
+                </pixaref-gallery>
+            </div>
+            <div class="actionbar" fxLayout="row" fxLayoutAlign="end center">
+                <div class="actions" fxLayout="row" fxLayoutAlign="center center">
+                    <mat-paginator [length]="refs.length" [pageSize]="pageSize" [pageSizeOptions]="[25, 50, 100, 250]"
+                        class="paginator" (page)="page = $event" aria-label="Select page">
+                    </mat-paginator>
+                    <button *ngIf="connected" mat-mini-fab color="primary" (click)="add()" class="add-button"
+                        aria-label="Add new...">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button *ngIf="!connected" mat-mini-fab color="warn" (click)="connect()" class="connect-button"
+                        aria-label="Connect...">
+                        <mat-icon>link_off</mat-icon>
+                    </button>
+                    <mat-progress-spinner *ngIf="!connected" [value]="connectionStatus.progress" diameter="56"
+                        strokeWidth="4" color="warn" mode="determinate" class="status-progress-spinner">
+                    </mat-progress-spinner>
+                </div>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

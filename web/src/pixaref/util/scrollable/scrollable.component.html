@@ -1,0 +1,23 @@
+<div class="scrollable-wrapper">
+    <div *ngIf="scrollable" class="scrollable-scroller">
+        <div *ngIf="scrollOffset > 0" class="scrollable-scroller-button left"
+            (mousedown)="startScrolling(Direction.LEFT)"
+            (mouseup)="stopScrolling()"
+            (mouseleave)="stopScrolling()"
+            (click)="$event.stopPropagation()">
+            <mat-icon>navigate_before</mat-icon>
+        </div>
+        <div *ngIf="scrollOffset < scrollMax" class="scrollable-scroller-button right"
+            (mousedown)="startScrolling(Direction.RIGHT)"
+            (mouseup)="stopScrolling()"
+            (mouseleave)="stopScrolling()"
+            (click)="$event.stopPropagation()">
+            <mat-icon>navigate_next</mat-icon>
+        </div>
+    </div>
+    <div pixarefResizeObserver (resized)="update()" #content class="scrollable-content">
+        <div>
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

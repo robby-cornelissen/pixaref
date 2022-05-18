@@ -1,0 +1,18 @@
+{
+    "host": "localhost:3000",
+    "rsProtocol": "http",
+    "wsProtocol": "ws",
+    "fsProtocol": "http",
+    "mimes": {
+        "image/png": {
+            "label": "PNG"
+        },
+        "image/jpeg": {
+            "label": "JPG"
+        },
+        "image/svg+xml": {
+            "label": "SVG"
+        }
+    },
+    "separators": [13, 188]
+}

@@ -1,0 +1,6 @@
+{
+    "host": "http://localhost:3000",
+    "preview_width": 640,
+    "preview_height": 360,
+    "send_to_pixaref_shortcut_key": "F9"
+}

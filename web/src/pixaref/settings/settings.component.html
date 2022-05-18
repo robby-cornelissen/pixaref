@@ -1,0 +1,43 @@
+<div>
+    <mat-accordion>
+        <mat-expansion-panel expanded="true" togglePosition="after">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Types</mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="column" fxLayoutGap="0.5rem">
+                <div *ngFor="let type of types" fxLayout="row" fxLayoutGap="0.5rem" fxLayoutAlign="center center">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput [(ngModel)]="type.name" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Icon</mat-label>
+                        <input matInput [(ngModel)]="type.icon" autocomplete="off">
+                        <mat-icon matSuffix>{{type.icon}}</mat-icon>
+                    </mat-form-field>
+                    <button mat-icon-button *ngIf="type.name.trim()" (click)="save(type)" aria-label="Save">
+                        <mat-icon>check_circle</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" *ngIf="!type.name.trim()" (click)="delete(type)"
+                        aria-label="Delete">
+                        <mat-icon>remove_circle_outline</mat-icon>
+                    </button>
+                </div>
+                <div fxLayout="row" fxLayoutGap="0.5rem" fxLayoutAlign="center center">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput [(ngModel)]="type.name" required="true" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Icon</mat-label>
+                        <input matInput [(ngModel)]="type.icon" autocomplete="off">
+                        <mat-icon matSuffix>{{type.icon}}</mat-icon>
+                    </mat-form-field>
+                    <button mat-icon-button color="primary" (click)="save(type)" aria-label="Add">
+                        <mat-icon>add_circle_outline</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

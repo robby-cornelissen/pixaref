@@ -1,5 +1,5 @@
 import { LeafPaths } from '@pixaref/core';
-import json from './config.json';
+import json from './config.json' assert {type: "json"};
 
 const ENVIRONMENT_VARIABLES: { [P in LeafPaths<Config>]?: string } = {
     'database.path': 'DATABASE_PATH',

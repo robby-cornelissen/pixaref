@@ -39,3 +39,5 @@ Or to detach it completely from the terminal:
 ```shell
 ./pixaref-client & disown
 ```
+
+When the client is running, the Pixaref logo should be visible in the toolbar. Interact with the client either via the toolbar menu item, or by pressing `F9`.

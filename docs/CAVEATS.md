@@ -8,5 +8,8 @@ The Pixaref server serves content over HTTP instead of HTTP/S, and it does not h
 ## Testing
 Besides my daily personal use, this application did not undergo any testing. What's more, any form of unit testing and end-to-end testing is completely absent in the codebase. Your mileage may vary.
 
+## Performance
+The filtering and paging logic is currently completely implemented on the client side. I suspect that will start becoming an issue once the image collection grows beyond a couple of thousand images. I'll cross that bridge when I get there.
+
 ## Platform support
 My home network consists entirely of Linux machines, and I only ever run the Pixaref server and client on various LTS versions of Ubuntu Linux. Could you get it to work on other Linux distributions? Most likely. Could you get it to run on Mac OS or Windows? Probably. Am I interested in catering to that? Unlikely.

@@ -13,7 +13,7 @@ Pixaref consists of a web application running on Node.js and a GTK client applic
 
 | Pixaref server  |
 | --------------- |
-| <a href="docs/images/pixaref-client.png" target="_blank"><img src="docs/images/pixaref-server.png" width="645"></a> |
+| <a href="docs/images/pixaref-server.png" target="_blank"><img src="docs/images/pixaref-server.png" width="645"></a> |
 
 | Pixaref client  |
 | --------------- |

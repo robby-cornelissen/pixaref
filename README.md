@@ -11,13 +11,11 @@ Pixaref consists of a web application running on Node.js and a GTK client applic
 * Filter on reference image titles, categories and tags 
 * Define reference image categories, e.g. "Movie" or "Game"
 
-| Pixaref server  |
-| --------------- |
-| <a href="docs/images/pixaref-server.png" target="_blank"><img src="docs/images/pixaref-server.png" width="645"></a> |
+### Pixaref server
+<a href="docs/images/pixaref-server.png" target="_blank"><img src="docs/images/pixaref-server.png" width="967"></a> 
 
-| Pixaref client  |
-| --------------- |
-| <a href="docs/images/pixaref-client.png" target="_blank"><img src="docs/images/pixaref-client.png" width="230"></a> |
+### Pixaref client
+<a href="docs/images/pixaref-client.png" target="_blank"><img src="docs/images/pixaref-client.png" width="345"></a>
 
 ## Documentation
  * [Installation](docs/INSTALL.md)
